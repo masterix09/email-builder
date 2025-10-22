@@ -35,7 +35,7 @@ const CanvasBody = () => {
           }}
         >
           {columns.map((column) => (
-            <div id={column.id} key={column.id} className={`${column.content} w-full p-3 `}
+            <div id={column.id} key={column.id} className={`${column.content} w-full p-3 h-fit`}
             onDragOver={(ev)  => {
               ev.preventDefault();
             }}
@@ -56,7 +56,7 @@ const CanvasBody = () => {
             }}
             >
               {column.children?.map((child) => (
-                <div id={child.id} key={child.id} className="w-full p-3 h-[100px]">
+                <div id={child.id} key={child.id} className="w-full p-3 h-fit">
                   <ElementRenderer element={child} />
                 </div>
               ))}
