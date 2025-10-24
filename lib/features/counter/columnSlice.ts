@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '@/lib/store'
 import { ColumnElement } from '@/lib/type'
 
-type ColumnElementWithoutIcon = Omit<ColumnElement, 'icon'>
+export type ColumnElementWithoutIcon = Omit<ColumnElement, 'icon'>
 // Define the initial state using that type
 const initialState: ColumnElementWithoutIcon[] = []
 
@@ -31,11 +31,23 @@ export const columnSlice = createSlice({
         content: action.payload.content,
         children: action.payload.children,
       } : column)
+    },
+    deleteElement: (state, action: PayloadAction<{idElement: string, columnId: string}>) => {
+      return state.map(column => column.id === action.payload.columnId ? {
+        id: column.id,
+        name: column.name,
+        type: column.type,
+        content: column.content,
+        children: column.children?.filter(element => element.id !== action.payload.idElement),
+      } : column)
+    },
+    deleteColumn: (state, action: PayloadAction<string>) => {
+      return state.filter(column => column.id !== action.payload)
     }
   }
 })
 
-export const { addColumn, removeColumn, updateColumn } = columnSlice.actions
+export const { addColumn, removeColumn, updateColumn, deleteElement, deleteColumn } = columnSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectColumns = (state: RootState) => state.column

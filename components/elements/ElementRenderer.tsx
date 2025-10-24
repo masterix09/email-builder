@@ -24,7 +24,7 @@ const ElementRenderer: React.FC<ElementRendererProps> = ({ element }) => {
   };
 
   return (
-    <div className="w-full h-full border border-gray-200 rounded-md overflow-hidden">
+    <div className="w-full h-full border border-gray-200 rounded-md z-10">
       {renderElement()}
     </div>
   );
