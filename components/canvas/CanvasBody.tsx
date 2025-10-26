@@ -2,7 +2,6 @@
 import {
   ColumnElementWithoutIcon,
   addColumn,
-  deleteColumn,
   selectColumns,
   updateColumn,
 } from "@/lib/features/counter/columnSlice";
@@ -10,20 +9,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { ColumnElement } from "@/lib/type";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import ElementRenderer from "../elements/ElementRenderer";
-import { Button } from "../ui/button";
-import { X } from "lucide-react";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { addElementClicked } from "@/lib/features/elementClicked/elementClickedSlice";
+import ColumnRender from "../elements/ColumnRender";
 
 const CanvasBody = () => {
   const dispatch = useDispatch();
@@ -32,7 +18,7 @@ const CanvasBody = () => {
     null
   );
   const [dragTimeout, setDragTimeout] = useState<NodeJS.Timeout | null>(null);
-  const elementClicked = useAppSelector((state) => state.elementClicked);
+
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
@@ -127,92 +113,15 @@ const CanvasBody = () => {
         onDrop={onDropCanvasFunction}
       >
         {columns.map((column) => (
-          <div
-            id={column.id}
+          <ColumnRender 
             key={column.id}
-            data-column-id={column.id}
-            className={`${
-              column.content
-            } w-full p-3 h-fit transition-colors duration-200 relative ${
-              draggedOverColumn === column.id ? "bg-green-300" : ""
-            }`}
-            onClick={() =>
-              dispatch(addElementClicked({ id: column.id, type: "column" }))
-            }
-            onDragEnter={(ev) => {
-              onDragEnterColumnFunction(ev, column.id);
-            }}
-            onDragLeave={(ev) => {
-              onDragLeaveColumnFunction(ev);
-            }}
-            onDragOver={(ev) => {
-              ev.preventDefault();
-            }}
-            onDrop={(ev) => {
-              onDropColumnFunction(ev, column);
-            }}
-          >
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  size="icon-sm"
-                  variant="destructive"
-                  className={`absolute -top-5 right-0 ${
-                    elementClicked.id === column.id ? "flex" : "hidden"
-                  } z-10 items-center justify-center`}
-                >
-                  <X className="text-white" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Sei davvero sicuro?</DialogTitle>
-                  <DialogDescription>
-                    Questa azione non può essere annullata. Questo eliminerà
-                    permanentemente questo elemento e lo rimuoverà
-                    dall&apos;area di lavoro.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <Button
-                    variant="destructive"
-                    onClick={() => dispatch(deleteColumn(column.id))}
-                  >
-                    Elimina
-                  </Button>
-                  <DialogClose asChild>
-                    <Button type="button" variant="secondary">
-                      Annulla
-                    </Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-            {column.children?.map((child) => (
-              <div
-                id={child.id}
-                key={child.id}
-                className="w-full p-3 h-fit relative"
-                onDragEnter={(ev) => {
-                  ev.preventDefault();
-                  ev.stopPropagation();
-                  // Mantieni la colonna come dragged over
-                  setDraggedOverColumn(column.id);
-                }}
-                onDragLeave={(ev) => {
-                  ev.preventDefault();
-                  ev.stopPropagation();
-                  // Non fare nulla, lascia che la colonna gestisca il drag leave
-                }}
-                onDragOver={(ev) => {
-                  ev.preventDefault();
-                  ev.stopPropagation();
-                }}
-              >
-                <ElementRenderer element={child} />
-              </div>
-            ))}
-          </div>
+            column={column}
+            draggedOverColumn={draggedOverColumn}
+            onDragEnterColumnFunction={onDragEnterColumnFunction}
+            onDragLeaveColumnFunction={onDragLeaveColumnFunction}
+            onDropColumnFunction={onDropColumnFunction}
+            setDraggedOverColumn={setDraggedOverColumn}
+          />
         ))}
       </div>
     </div>

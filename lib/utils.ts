@@ -15,3 +15,16 @@ export const extractText = (htmlContent: string): string => {
   
   return text;
 };
+
+export const extractBackgroundColor = (content: string): string => {
+  // Cerca classi bg-[valore] nelle classi Tailwind
+  const bgClassMatch = content.match(/bg-\[([^\]]+)\]/);
+  if (bgClassMatch) {
+    return bgClassMatch[1];
+  }
+  
+  // Fallback: cerca ancora negli stili CSS inline per compatibilità
+  const backgroundColorMatch = content.match(/<div[^>]*style="[^"]*background-color:\s*([^;]+);/);
+  const backgroundColor = backgroundColorMatch ? backgroundColorMatch[1].trim() : "#000000";
+  return backgroundColor;
+};

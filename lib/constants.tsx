@@ -37,7 +37,7 @@ export const componentElements: ColumnElement[]= [
         id: "1",
         name: 'Immagine',
         type: 'image',
-        content: '< img src="https://via.placeholder.com/150" alt="image" />',
+        content: '<img src="https://via.placeholder.com/150" alt="image" />',
         icon: <ImageIcon className="size-4 group-hover:text-white transition-all duration-300" />
     },
     {
