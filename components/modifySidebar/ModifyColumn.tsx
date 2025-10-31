@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { useAppSelector } from "@/lib/hooks";
 import { extractBackgroundColor } from "@/lib/utils";
@@ -11,7 +11,11 @@ const ModifyColumn = () => {
   const columns = useAppSelector((state) => state.column);
   const column = columns.find((el) => el.id === elementClicked.id);
   const dispatch = useDispatch();
-  const [backgroundColor, setBackgroundColor] = useState<string>(extractBackgroundColor(column?.content || "") || "#fff");
+  const bgColor = extractBackgroundColor(column?.content || "") || "#ffffff";
+  const [backgroundColor, setBackgroundColor] = useState<string>(bgColor);
+  useEffect(() => {
+    setBackgroundColor(bgColor);
+  }, [bgColor]);
   return (
     <div className="w-full h-full overflow-y-auto">
       <div className="p-6 space-y-6">

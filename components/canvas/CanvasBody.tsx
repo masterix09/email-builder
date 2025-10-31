@@ -118,7 +118,7 @@ const CanvasBody = () => {
             </p>
           </div>
           {columns.length > 0 && (
-            <div className="text-xs font-medium text-foreground bg-primary/10 text-primary px-3 py-1.5 rounded-full border border-primary/20">
+            <div className="text-xs font-medium bg-primary/10 text-primary px-3 py-1.5 rounded-full border border-primary/20">
               {columns.length} {columns.length === 1 ? 'colonna' : 'colonne'}
             </div>
           )}

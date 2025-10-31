@@ -20,6 +20,7 @@ export const extractBackgroundColor = (content: string): string => {
   // Cerca classi bg-[valore] nelle classi Tailwind
   const bgClassMatch = content.match(/bg-\[([^\]]+)\]/);
   if (bgClassMatch) {
+    console.log("bgClassMatch", bgClassMatch[1]);
     return bgClassMatch[1];
   }
   

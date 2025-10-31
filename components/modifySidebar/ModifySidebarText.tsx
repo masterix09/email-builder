@@ -146,7 +146,7 @@ const ModifySidebarText = () => {
         {/* Header */}
         <div className="space-y-1">
           <h1 className="text-lg font-semibold text-foreground">Proprietà Testo</h1>
-          <p className="text-xs text-muted-foreground">Personalizza l'aspetto del testo</p>
+          <p className="text-xs text-muted-foreground">Personalizza l&apos;aspetto del testo</p>
         </div>
 
         {/* Text Input */}
