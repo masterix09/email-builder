@@ -25,6 +25,6 @@ export const extractBackgroundColor = (content: string): string => {
   
   // Fallback: cerca ancora negli stili CSS inline per compatibilità
   const backgroundColorMatch = content.match(/<div[^>]*style="[^"]*background-color:\s*([^;]+);/);
-  const backgroundColor = backgroundColorMatch ? backgroundColorMatch[1].trim() : "#000000";
+  const backgroundColor = backgroundColorMatch ? backgroundColorMatch[1].trim() : "#fff";
   return backgroundColor;
 };

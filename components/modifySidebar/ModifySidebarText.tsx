@@ -98,114 +98,182 @@ const ModifySidebarText = () => {
   };
 
   return (
-    <div className="p-3">
-      <style jsx>{`
-        .range-input::-webkit-slider-thumb {
-          appearance: none;
-          height: 20px;
-          width: 20px;
-          border-radius: 50%;
-          background: #000000;
-          cursor: pointer;
-          border: 2px solid #ffffff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .range-input::-moz-range-thumb {
-          height: 20px;
-          width: 20px;
-          border-radius: 50%;
-          background: #000000;
-          cursor: pointer;
-          border: 2px solid #ffffff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .range-input::-webkit-slider-track {
-          background: transparent;
-          height: 6px;
-          border-radius: 3px;
-        }
-        .range-input::-moz-range-track {
-          background: transparent;
-          height: 6px;
-          border-radius: 3px;
-          border: none;
-        }
-      `}</style>
-      <h1 className="text-lg font-bold">Modifica elemento</h1>
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-col gap-2">
-          <h2 className="text-sm font-bold">Testo</h2>
+    <div className="w-full h-full overflow-y-auto">
+      <div className="p-6 space-y-6">
+        <style jsx>{`
+          .range-input::-webkit-slider-thumb {
+            appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: hsl(var(--primary));
+            cursor: pointer;
+            border: 2px solid hsl(var(--background));
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s;
+          }
+          .range-input::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+          }
+          .range-input::-moz-range-thumb {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: hsl(var(--primary));
+            cursor: pointer;
+            border: 2px solid hsl(var(--background));
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s;
+          }
+          .range-input::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+          }
+          .range-input::-webkit-slider-track {
+            background: transparent;
+            height: 6px;
+            border-radius: 3px;
+          }
+          .range-input::-moz-range-track {
+            background: transparent;
+            height: 6px;
+            border-radius: 3px;
+            border: none;
+          }
+        `}</style>
+        
+        {/* Header */}
+        <div className="space-y-1">
+          <h1 className="text-lg font-semibold text-foreground">Proprietà Testo</h1>
+          <p className="text-xs text-muted-foreground">Personalizza l'aspetto del testo</p>
+        </div>
+
+        {/* Text Input */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-foreground">Contenuto</label>
           <Input
             type="text"
             value={text.text}
             onChange={(e) => updateText({ ...text, text: e.target.value })}
-            key={elementClicked.id} // Forza il re-render quando cambia l'elemento
+            key={elementClicked.id}
+            placeholder="Inserisci il testo"
           />
         </div>
-        <h2 className="text-sm font-bold mt-3">Font Style</h2>
-        <div className="flex justify-between items-center gap-2 flex-1">
-          <Button
-            variant={text.bold ? "default" : "outline"}
-            onClick={() => updateText({ ...text, bold: !text.bold })}
-          >
-            <BoldIcon />
-          </Button>
-          <Button
-            variant={text.underline ? "default" : "outline"}
-            onClick={() => updateText({ ...text, underline: !text.underline })}
-          >
-            <UnderlineIcon />
-          </Button>
-          <Button
-            variant={text.italic ? "default" : "outline"}
-            onClick={() => updateText({ ...text, italic: !text.italic })}
-          >
-            <ItalicIcon />
-          </Button>
+
+        {/* Font Style */}
+        <div className="space-y-3">
+          <label className="text-sm font-medium text-foreground">Stile</label>
+          <div className="flex gap-2">
+            <Button
+              variant={text.bold ? "default" : "outline"}
+              size="sm"
+              className="flex-1"
+              onClick={() => updateText({ ...text, bold: !text.bold })}
+            >
+              <BoldIcon className="size-4" />
+            </Button>
+            <Button
+              variant={text.italic ? "default" : "outline"}
+              size="sm"
+              className="flex-1"
+              onClick={() => updateText({ ...text, italic: !text.italic })}
+            >
+              <ItalicIcon className="size-4" />
+            </Button>
+            <Button
+              variant={text.underline ? "default" : "outline"}
+              size="sm"
+              className="flex-1"
+              onClick={() => updateText({ ...text, underline: !text.underline })}
+            >
+              <UnderlineIcon className="size-4" />
+            </Button>
+          </div>
         </div>
-        <h2 className="text-sm font-bold mt-3">Text Align</h2>
-        <div className="flex justify-between items-center flex-1">
-          <Button
-            variant={text.textAlign === "start" ? "default" : "outline"}
-            onClick={() => updateText({ ...text, textAlign: "start" })}
-          >
-            <TextAlignStart />
-          </Button>
-          <Button
-            variant={text.textAlign === "center" ? "default" : "outline"}
-            onClick={() => updateText({ ...text, textAlign: "center" })}
-          >
-            <TextAlignCenter />
-          </Button>
-          <Button
-            variant={text.textAlign === "end" ? "default" : "outline"}
-            onClick={() => updateText({ ...text, textAlign: "end" })}
-          >
-            <TextAlignEnd />
-          </Button>
+
+        {/* Text Align */}
+        <div className="space-y-3">
+          <label className="text-sm font-medium text-foreground">Allineamento</label>
+          <div className="flex gap-2">
+            <Button
+              variant={text.textAlign === "start" ? "default" : "outline"}
+              size="sm"
+              className="flex-1"
+              onClick={() => updateText({ ...text, textAlign: "start" })}
+            >
+              <TextAlignStart className="size-4" />
+            </Button>
+            <Button
+              variant={text.textAlign === "center" ? "default" : "outline"}
+              size="sm"
+              className="flex-1"
+              onClick={() => updateText({ ...text, textAlign: "center" })}
+            >
+              <TextAlignCenter className="size-4" />
+            </Button>
+            <Button
+              variant={text.textAlign === "end" ? "default" : "outline"}
+              size="sm"
+              className="flex-1"
+              onClick={() => updateText({ ...text, textAlign: "end" })}
+            >
+              <TextAlignEnd className="size-4" />
+            </Button>
+          </div>
         </div>
-        <h2 className="text-sm font-bold mt-3">Font Size</h2>
-        <input 
-          className="w-full range-input" 
-          type="range" 
-          min={12} 
-          max={100} 
-          value={text.fontSize} 
-          onChange={(e) => {
-            const percentage = ((parseInt(e.target.value) - 12) / (100 - 12)) * 100;
-            e.target.style.background = `linear-gradient(to right, #000000 0%, #000000 ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`;
-            updateText({ ...text, fontSize: parseInt(e.target.value) });
-          }}
-          style={{
-            background: `linear-gradient(to right, #000000 0%, #000000 ${((text.fontSize - 12) / (100 - 12)) * 100}%, #e5e7eb ${((text.fontSize - 12) / (100 - 12)) * 100}%, #e5e7eb 100%)`,
-            appearance: 'none',
-            height: '6px',
-            borderRadius: '3px',
-            outline: 'none'
-          }}
-        />
-        <h2 className="text-sm font-bold mt-3">Font Color</h2>
-        <Input type="color" value={text.fontColor} onChange={(e) => updateText({ ...text, fontColor: e.target.value })} />
+
+        {/* Font Size */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <label className="text-sm font-medium text-foreground">Dimensione</label>
+            <span className="text-xs font-mono text-muted-foreground bg-muted px-2 py-0.5 rounded">
+              {text.fontSize}px
+            </span>
+          </div>
+          <input 
+            className="w-full range-input" 
+            type="range" 
+            min={12} 
+            max={100} 
+            value={text.fontSize} 
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              const percentage = ((value - 12) / (100 - 12)) * 100;
+              e.target.style.background = `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${percentage}%, hsl(var(--muted)) ${percentage}%, hsl(var(--muted)) 100%)`;
+              updateText({ ...text, fontSize: value });
+            }}
+            style={{
+              background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${((text.fontSize - 12) / (100 - 12)) * 100}%, hsl(var(--muted)) ${((text.fontSize - 12) / (100 - 12)) * 100}%, hsl(var(--muted)) 100%)`,
+              appearance: 'none',
+              height: '6px',
+              borderRadius: '3px',
+              outline: 'none'
+            }}
+          />
+        </div>
+
+        {/* Font Color */}
+        <div className="space-y-3">
+          <label className="text-sm font-medium text-foreground">Colore</label>
+          <div className="flex items-center gap-3">
+            <Input
+              type="color"
+              value={text.fontColor}
+              onChange={(e) => updateText({ ...text, fontColor: e.target.value })}
+              className="h-12 w-20 cursor-pointer rounded-lg border-2 border-border"
+            />
+            <div className="flex-1">
+              <Input
+                type="text"
+                value={text.fontColor}
+                onChange={(e) => updateText({ ...text, fontColor: e.target.value })}
+                placeholder="#000000"
+                className="font-mono text-sm"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

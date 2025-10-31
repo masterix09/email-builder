@@ -15,12 +15,12 @@ const ImageElement: React.FC<ImageElementProps> = ({ content, id }) => {
   const imageSrc = extractImageSrc(content);
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center p-4 bg-muted/30 rounded-lg">
       <img 
         src={imageSrc} 
         alt="Elemento immagine" 
-        className="max-w-full max-h-full object-contain"
-        style={{ maxHeight: '100px' }}
+        className="max-w-full max-h-full object-contain rounded-md shadow-sm"
+        style={{ maxHeight: '200px' }}
       />
     </div>
   );
