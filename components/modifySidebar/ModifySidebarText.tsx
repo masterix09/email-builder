@@ -5,7 +5,7 @@ import { Input } from "../ui/input";
 import { extractText } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
-import { updateColumn } from "@/lib/features/counter/columnSlice";
+import { updateColumn } from "@/lib/features/columns/columnSlice";
 import { BoldIcon, ItalicIcon, TextAlignCenter, TextAlignEnd, TextAlignStart, UnderlineIcon } from "lucide-react";
 
 interface ITextFormat {

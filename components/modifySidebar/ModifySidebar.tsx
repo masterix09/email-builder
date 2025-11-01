@@ -2,6 +2,12 @@
 import { useAppSelector } from '@/lib/hooks';
 import ModifySidebarText from './ModifySidebarText';
 import ModifyColumn from './ModifyColumn';
+import ModifySidebarImage from './ModifySidebarImage';
+import ModifySidebarButton from './ModifySidebarButton';
+import ModifySidebarDivider from './ModifySidebarDivider';
+import ModifySidebarSpacer from './ModifySidebarSpacer';
+import ModifySidebarLink from './ModifySidebarLink';
+import ModifySidebarHeading from './ModifySidebarHeading';
 import { useMemo } from 'react';
 import { Settings2 } from 'lucide-react';
 
@@ -11,8 +17,20 @@ const ModifySidebar = () => {
     switch (elementClicked.type) {
       case 'text':
         return <ModifySidebarText />;
+      case 'image':
+        return <ModifySidebarImage />;
       case 'column':
         return <ModifyColumn />;
+      case 'button':
+        return <ModifySidebarButton />;
+      case 'divider':
+        return <ModifySidebarDivider />;
+      case 'spacer':
+        return <ModifySidebarSpacer />;
+      case 'link':
+        return <ModifySidebarLink />;
+      case 'heading':
+        return <ModifySidebarHeading />;
       default:
         return (
           <div className="h-full flex items-center justify-center p-8">

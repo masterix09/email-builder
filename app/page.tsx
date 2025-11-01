@@ -1,7 +1,7 @@
 import CanvasBody from "@/components/canvas/CanvasBody";
 import ModifySidebar from "@/components/modifySidebar/ModifySidebar";
 import SidebarBody from "@/components/sidebar/SidebarBody";
-import Header from "@/components/Header";
+import Header from "@/components/header/Header";
 
 export default function Home() {
   return (

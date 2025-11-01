@@ -4,7 +4,7 @@ import {
   addColumn,
   selectColumns,
   updateColumn,
-} from "@/lib/features/counter/columnSlice";
+} from "@/lib/features/columns/columnSlice";
 import { useAppSelector } from "@/lib/hooks";
 import { ColumnElement } from "@/lib/type";
 import React, { useState, useEffect } from "react";

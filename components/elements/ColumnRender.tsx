@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/hooks";
-import {ColumnElementWithoutIcon} from "@/lib/features/counter/columnSlice";
+import {ColumnElementWithoutIcon} from "@/lib/features/columns/columnSlice";
 import { addElementClicked } from "@/lib/features/elementClicked/elementClickedSlice";
 import { extractBackgroundColor } from "@/lib/utils";
 import ElementRenderer from "./ElementRenderer";

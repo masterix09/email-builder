@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { useAppSelector } from "@/lib/hooks";
 import { extractBackgroundColor } from "@/lib/utils";
-import { updateColumn } from "@/lib/features/counter/columnSlice";
+import { updateColumn } from "@/lib/features/columns/columnSlice";
 import { useDispatch } from "react-redux";
 
 const ModifyColumn = () => {

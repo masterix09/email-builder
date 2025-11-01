@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { deleteElement } from "@/lib/features/counter/columnSlice";
+import { deleteElement } from "@/lib/features/columns/columnSlice";
 import { useAppSelector } from "@/lib/hooks";
 
 const DialogDeleteText = ({ id }: { id: string }) => {

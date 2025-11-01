@@ -31,6 +31,6 @@ export const elementClickedSlice = createSlice({
 export const { addElementClicked, removeElementClicked } = elementClickedSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectTempElements = (state: RootState) => state.column
+export const selectElementClicked = (state: RootState) => state.elementClicked
 
 export default elementClickedSlice.reducer

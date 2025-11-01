@@ -20,9 +20,7 @@ export const columnSlice = createSlice({
         content: action.payload.content,
       })
     },
-    removeColumn: (state, action: PayloadAction<string>) => {
-      return state.filter(column => column.id !== action.payload)
-    },
+   
     updateColumn: (state, action: PayloadAction<ColumnElement>) => {
       return state.map(column => column.id === action.payload.id ? {
         id: action.payload.id,
@@ -47,7 +45,7 @@ export const columnSlice = createSlice({
   }
 })
 
-export const { addColumn, removeColumn, updateColumn, deleteElement, deleteColumn } = columnSlice.actions
+export const { addColumn, updateColumn, deleteElement, deleteColumn } = columnSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectColumns = (state: RootState) => state.column

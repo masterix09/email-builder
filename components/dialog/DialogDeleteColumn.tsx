@@ -13,7 +13,7 @@ import {
   import { X } from "lucide-react";
   import { useDispatch } from "react-redux";
   import { useAppSelector } from "@/lib/hooks";
-import { deleteColumn } from '@/lib/features/counter/columnSlice';
+import { deleteColumn } from '@/lib/features/columns/columnSlice';
 
 const DialogDeleteColumn = ({ id }: { id: string }) => {
     const dispatch = useDispatch();
